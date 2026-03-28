@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grande Shangai — All You Can Eat Giapponese a Quattromiglia, Rende</title>
+  <meta name="description" content="Grande Shangai è il ristorante All You Can Eat giapponese di riferimento a Quattromiglia, Rende (CS). Pranzo a 14,90€ e cena a 23,90€. Sushi, sashimi, nigiri e molto altro. Prenota ora!" />
+  <meta name="keywords" content="all you can eat, sushi, Rende, Cosenza, Quattromiglia, ristorante giapponese, AYCE, sashimi" />
+  <meta property="og:title" content="Grande Shangai — All You Can Eat Giapponese a Quattromiglia" />
+  <meta property="og:description" content="Mangia quanto vuoi. Paga quanto sai. Pranzo 14,90€ | Cena 23,90€. Il sushi quotidiano di Quattromiglia." />
+  <meta property="og:type" content="restaurant" />
+  <link rel="icon" href="logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;0,9..40,900;1,9..40,400&family=Nunito+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =====================================================
+       CSS VARIABLES & RESET
+    ===================================================== */
+    :root {
+      --red: #D93A2B;
+      --night: #1A1A2E;
+      --gold: #C9902A;
+      --rice: #F7F6F4;
+      --ink: #2C2C3A;
+      --red-light: #F5E8E6;
+      --gold-light: #FAF3E7;
+      --font-display: 'DM Sans', sans-serif;
+      --font-body: 'Nunito Sans', sans-serif;
+      --container: min(1200px, 90vw);
+      --radius-card: 16px;
+      --shadow-card: 0 4px 32px rgba(0, 0, 0, 0.08);
+      --transition: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--rice);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =====================================================
+       SCROLL REVEAL ANIMATIONS
+    ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* =====================================================
+       HERO ENTRANCE ANIMATIONS
+    ===================================================== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(217, 58, 43, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(217, 58, 43, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(217, 58, 43, 0); }
+    }
+
+    @keyframes hamburgerToX-top {
+      from { transform: translateY(0) rotate(0); }
+      to { transform: translateY(9px) rotate(45deg); }
+    }
+
+    @keyframes hamburgerToX-mid {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes hamburgerToX-bot {
+      from { transform: translateY(0) rotate(0); }
+      to { transform: translateY(-9px) rotate(-45deg); }
+    }
+
+    /* =====================================================
+       STICKY NAV
+    ===================================================== */
+    #main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    #main-nav.scrolled {
+      background: var(--night);
+      padding: 12px 0;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-inner {
+      width: var(--container);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      height: 52px;
+      width: auto;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.88);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width var(--transition);
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff !important;
+      background: var(--red);
+      padding: 10px 24px;
+      border-radius: 50px;
+      transition: all var(--transition);
+      animation: pulse 2s ease 1.5s 1;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: #b82e1f;
+      transform: scale(1.04);
+      box-shadow: 0 4px 20px rgba(217, 58, 43, 0.45);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 7px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1010;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Mobile overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--night);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .mobile-overlay.open {
+      display: flex;
+    }
+
+    .mobile-overlay-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .mobile-overlay-links a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 32px;
+      color: #fff;
+      transition: color var(--transition);
+    }
+
+    .mobile-overlay-links a:hover {
+      color: var(--red);
+    }
+
+    .mobile-overlay-cta {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      background: var(--red);
+      padding: 14px 36px;
+      border-radius: 50px;
+      transition: all var(--transition);
+    }
+
+    /* =====================================================
+       HERO SECTION
+    ===================================================== */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 26, 46, 0.72);
+      z-index: 1;
+    }
+
+    /* Subtle geometric decoration */
+    .hero-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 80px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 80px
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: var(--container);
+      margin: 0 auto;
+      padding: 120px 0 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0s forwards;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(40px, 5.5vw, 64px);
+      color: #fff;
+      max-width: 700px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.15s forwards;
+    }
+
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(17px, 2vw, 20px);
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 580px;
+      margin-top: 20px;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.45s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      background: var(--red);
+      padding: 16px 36px;
+      border-radius: 50px;
+      border: 2px solid var(--red);
+      transition: all var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: #b82e1f;
+      border-color: #b82e1f;
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(217, 58, 43, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      background: transparent;
+      padding: 16px 36px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      transition: all var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      color: var(--ink);
+      border-color: #fff;
+      transform: scale(1.03);
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 12px;
+      font-family: var(--font-display);
+      letter-spacing: 0.1em;
+      animation: fadeUp 0.6s ease 1s both;
+    }
+
+    .hero-scroll-indicator svg {
+      animation: scrollBounce 1.8s ease-in-out infinite;
+    }
+
+    /* =====================================================
+       SHARED SECTION UTILITIES
+    ===================================================== */
+    .section-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .btn-outlined {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--red);
+      background: transparent;
+      padding: 14px 30px;
+      border-radius: 50px;
+      border: 2px solid var(--red);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-outlined:hover {
+      background: var(--red);
+      color: #fff;
+      transform: scale(1.03);
+      box-shadow: 0 6px 24px rgba(217, 58, 43, 0.3);
+    }
+
+    /* =====================================================
+       SECTION 3 — LA FORMULA AYCE
+    ===================================================== */
+    #formula {
+      background: var(--rice);
+      padding: 100px 0;
+    }
+
+    .formula-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .formula-header .section-eyebrow {
+      color: var(--red);
+    }
+
+    .formula-header .section-h2 {
+      color: var(--night);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .price-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-card);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card:hover {
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.14);
+      transform: translateY(-4px);
+    }
+
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .price-card.lunch::before { background: var(--gold); }
+    .price-card.dinner::before { background: var(--red); }
+
+    .price-tag-pill {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .price-card.lunch .price-tag-pill {
+      background: var(--gold-light);
+      color: var(--gold);
+    }
+
+    .price-card.dinner .price-tag-pill {
+      background: var(--red-light);
+      color: var(--red);
+    }
+
+    .price-amount {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 52px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .price-card.lunch .price-amount { color: var(--gold); }
+    .price-card.dinner .price-amount { color: var(--red); }
+
+    .price-per {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(44, 44, 58, 0.5);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+
+    .price-separator {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.08);
+      margin: 20px 0;
+    }
+
+    .price-desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(44, 44, 58, 0.75);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .price-hours {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: var(--rice);
+      color: var(--ink);
+    }
+
+    .formula-footnote {
+      font-size: 13px;
+      color: rgba(44, 44, 58, 0.45);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .formula-cta {
+      text-align: center;
+    }
+
+    /* =====================================================
+       SECTION 4 — PRENOTAZIONI
+    ===================================================== */
+    #prenotazioni {
+      background: var(--night);
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .reservation-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .reservation-header .section-eyebrow {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .reservation-header .section-h2 {
+      color: #fff;
+    }
+
+    .reservation-form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-card);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.08); /* Dark input background */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #fff; /* White text input */
+      font-family: var(--font-body);
+      font-size: 16px;
+      transition: border-color var(--transition), background var(--transition);
+      box-sizing: border-box;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    /* Make date/time icons white instead of black on dark background */
+    .form-control::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      opacity: 0.6;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--red);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-submit {
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      justify-content: center;
+      font-size: 18px;
+      padding: 18px 36px;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .reservation-form {
+        padding: 24px;
+      }
+    }
+
+
+
+    /* =====================================================
+       SECTION 5 — RECENSIONI
+    ===================================================== */
+    #reviews {
+      background: var(--rice);
+      padding: 100px 0;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .reviews-header .section-eyebrow {
+      color: var(--red);
+    }
+
+    .reviews-header .section-h2 {
+      color: var(--night);
+    }
+
+    .rating-highlight {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .rating-stars {
+      font-size: 32px;
+      margin-bottom: 12px;
+      letter-spacing: 4px;
+    }
+
+    .rating-number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 72px;
+      color: var(--red);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .rating-label {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(44, 44, 58, 0.6);
+      margin-top: 8px;
+    }
+
+    .rating-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--red);
+      margin: 24px auto 0;
+      border-radius: 2px;
+    }
+
+    .review-card-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .review-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .review-card:hover {
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .review-quote-mark {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 80px;
+      color: var(--red);
+      opacity: 0.18;
+      line-height: 0.7;
+      position: absolute;
+      top: 28px;
+      left: 36px;
+      font-style: normal;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .review-stars-small {
+      font-size: 18px;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+
+    .review-text {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      padding-top: 20px;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: rgba(44, 44, 58, 0.6);
+      border-top: 1px solid rgba(0,0,0,0.07);
+      padding-top: 20px;
+    }
+
+    /* Google G icon */
+    .google-g {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .reviews-cta {
+      text-align: center;
+      margin-top: 44px;
+    }
+
+    /* =====================================================
+       SECTION 6 — CONTATTI E FOOTER
+    ===================================================== */
+    #contatti {
+      background: var(--night);
+      padding: 80px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+    }
+
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      margin-bottom: 20px;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+      margin-bottom: 36px;
+    }
+
+    .footer-details {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-details li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.55;
+    }
+
+    .footer-details li .detail-emoji {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .footer-details a {
+      color: rgba(255, 255, 255, 0.72);
+      transition: color var(--transition);
+    }
+
+    .footer-details a:hover {
+      color: var(--red);
+    }
+
+    .footer-details strong {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--red);
+      border-color: var(--red);
+      transform: translateY(-3px);
+    }
+
+    .footer-social svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    .footer-map {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 320px;
+    }
+
+    .footer-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 12px;
+      filter: grayscale(30%) contrast(1.1);
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+    }
+
+    .footer-bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-bottom-inner p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* =====================================================
+       RESPONSIVE — MOBILE FIRST
+    ===================================================== */
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links-desktop { display: none !important; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      #hero { background-attachment: scroll; }
+      .hero-content { padding: 100px 0 80px; }
+
+      /* Formula */
+      .price-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .price-card { padding: 28px; }
+      .price-amount { font-size: 44px; }
+
+      /* Features */
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      /* Footer */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .price-grid { gap: 20px; }
+      .price-card { padding: 32px; }
+    }
+
+    @media (min-width: 769px) {
+      .hamburger { display: none; }
+      .nav-links-desktop { display: flex; }
+    }
+
+    /* =====================================================
+       ACCENT DECORATIONS
+    ===================================================== */
+    .red-rule {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    /* Thin decorative top border on formula section */
+    #formula {
+      position: relative;
+    }
+
+    #formula::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 0 0 3px 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       STICKY NAVIGATION
+  ===================================================== -->
+  <nav id="main-nav" role="navigation" aria-label="Navigazione principale">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#hero" aria-label="Grande Shangai — Home">
+        <img src="logo.svg" alt="Grande Shangai" class="nav-logo" />
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="nav-links nav-links-desktop" role="list">
+        <li><a href="menu.pdf" target="_blank">Menù</a></li>
+        <li><a href="#formula">Offerta</a></li>
+        <li><a href="#prenotazioni">Prenota</a></li>
+
+        <li><a href="#reviews">Recensioni</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+
+      <!-- CTA + hamburger -->
+      <div style="display:flex;align-items:center;gap:16px;flex-shrink:0;">
+        <a href="#prenotazioni" class="nav-cta" aria-label="Vai al form di prenotazione">Prenota</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Apri menu di navigazione" aria-expanded="false" aria-controls="mobile-overlay">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Menu principale">
+    <ul class="mobile-overlay-links" role="list">
+      <li><a href="menu.pdf" class="mobile-nav-link" target="_blank">Menù</a></li>
+      <li><a href="#formula" class="mobile-nav-link">Offerta</a></li>
+      <li><a href="#prenotazioni" class="mobile-nav-link">Prenota</a></li>
+
+      <li><a href="#reviews" class="mobile-nav-link">Recensioni</a></li>
+      <li><a href="#contatti" class="mobile-nav-link">Contatti</a></li>
+    </ul>
+
+  </div>
+
+
+  <!-- =====================================================
+       HERO SECTION
+  ===================================================== -->
+  <section id="hero" aria-label="Benvenuto in Grande Shangai — All You Can Eat">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <!-- H1 -->
+      <h1 class="hero-h1">Il tuo sushi quotidiano<br>a Quattromiglia.</h1>
+
+      <!-- Subheadline -->
+      <p class="hero-sub">
+        Qualità, varietà e zero pensieri. La vera esperienza All You Can Eat, perfetta per la tua pausa pranzo o una serata tra amici.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-ctas">
+        <a href="#prenotazioni" class="btn-primary" aria-label="Vai al form di prenotazione">
+          Prenota un tavolo
+        </a>
+        <a href="#contatti" class="btn-secondary" aria-label="Informazioni su delivery e asporto">
+          Ordina a domicilio / Asporto
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 3 — LA FORMULA ALL YOU CAN EAT
+  ===================================================== -->
+  <section id="formula" aria-labelledby="formula-heading">
+    <div class="container">
+
+      <div class="formula-header reveal">
+        <p class="section-eyebrow">LA NOSTRA FORMULA</p>
+        <h2 class="section-h2" id="formula-heading">Mangia quanto vuoi,<br>il prezzo è sempre quello.</h2>
+      </div>
+
+      <div class="price-grid">
+
+        <!-- Lunch Card -->
+        <article class="price-card lunch reveal-left" aria-label="Formula pranzo">
+          <div class="price-tag-pill">PRANZO</div>
+          <div class="price-amount" aria-label="14 virgola 90 euro">14,90 €</div>
+          <p class="price-per">a persona</p>
+          <div class="price-separator"></div>
+          <p class="price-desc">
+            Ricarica le energie. Il break ideale tra una lezione universitaria e l'altra o per una pausa lavoro veloce, senza rinunciare al gusto.
+          </p>
+          <span class="price-hours">🕛 12:30 - 15:00</span>
+        </article>
+
+        <!-- Dinner Card -->
+        <article class="price-card dinner reveal-right" aria-label="Formula cena">
+          <div class="price-tag-pill">CENA</div>
+          <div class="price-amount" aria-label="23 virgola 90 euro">23,90 €</div>
+          <p class="price-per">a persona</p>
+          <div class="price-separator"></div>
+          <p class="price-desc">
+            Relax e abbondanza. La serata perfetta da condividere in gruppo, esplorando tutto il nostro menu.
+          </p>
+          <span class="price-hours">🕖 19:30 - 23:00</span>
+        </article>
+
+      </div>
+
+      <p class="formula-footnote">* Bevande e dessert esclusi. Coperto incluso.</p>
+
+      <div class="formula-cta reveal">
+        <a href="menu.pdf" target="_blank" class="btn-outlined" aria-label="Sfoglia il Menu Completo in PDF">Sfoglia il Menu Completo</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 4 — PRENOTAZIONI
+  ===================================================== -->
+  <section id="prenotazioni" aria-labelledby="prenotazioni-heading">
+    <div class="container">
+      <div class="reservation-header reveal">
+        <p class="section-eyebrow">RISERVA IL TUO TAVOLO</p>
+        <h2 class="section-h2" id="prenotazioni-heading">Prenota Ora</h2>
+      </div>
+
+      <div class="reservation-form reveal">
+        <form action="#" method="POST" id="booking-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" class="form-control" placeholder="Il tuo nome" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="cognome">Cognome</label>
+              <input type="text" id="cognome" name="cognome" class="form-control" placeholder="Il tuo cognome" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="email">Indirizzo Email</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="nome@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Telefono</label>
+              <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+39 000 000 0000" required>
+            </div>
+
+            <div class="form-group">
+              <label for="orario">Orario di arrivo</label>
+              <input type="time" id="orario" name="orario" class="form-control" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="persone">Numero di persone</label>
+              <input type="number" id="persone" name="persone" class="form-control" placeholder="Da 1 a 20+" min="1" max="50" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="intolleranze">Eventuali Intolleranze, Allergie o Note</label>
+              <textarea id="intolleranze" name="intolleranze" class="form-control" placeholder="Specificare allergie o richieste speciali (opzionale)..." rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-primary btn-submit" aria-label="Invia richiesta di prenotazione">Richiedi Prenotazione</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- =====================================================
+       SECTION 5 — RECENSIONI
+  ===================================================== -->
+  <section id="reviews" aria-labelledby="reviews-heading">
+    <div class="container">
+
+      <div class="reviews-header reveal">
+        <p class="section-eyebrow">RECENSIONI</p>
+        <h2 class="section-h2" id="reviews-heading">Dicono di noi</h2>
+      </div>
+
+      <!-- Rating highlight -->
+      <div class="rating-highlight reveal">
+        <p class="rating-stars" aria-label="5 stelle su 5">⭐⭐⭐⭐⭐</p>
+        <p class="rating-number" aria-label="4 punto 3">4.3</p>
+        <p class="rating-label">su 5 — basato su oltre 4.200 recensioni Google</p>
+        <div class="rating-rule" aria-hidden="true"></div>
+      </div>
+
+      <!-- Review card -->
+      <div class="review-card-wrap">
+        <article class="review-card reveal" aria-label="Recensione cliente">
+          <span class="review-quote-mark" aria-hidden="true">"</span>
+          <p class="review-stars-small" aria-label="5 stelle">⭐⭐⭐⭐⭐</p>
+          <p class="review-text">
+            "Il punto di riferimento per il sushi a Quattromiglia. Servizio veloce, pesce ottimo e prezzi imbattibili."
+          </p>
+          <div class="review-author">
+            <!-- Google G icon -->
+            <svg class="google-g" viewBox="0 0 48 48" aria-label="Google">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            — Cliente verificato Google
+          </div>
+        </article>
+      </div>
+
+      <!-- CTA -->
+      <div class="reviews-cta reveal">
+        <a
+          href="https://maps.google.com/?q=Grande+Shangai+Rende"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-outlined"
+          aria-label="Leggi le recensioni su Google Maps"
+        >
+          Leggi le recensioni su Google
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SECTION 6 — CONTATTI E FOOTER
+  ===================================================== -->
+  <footer id="contatti" role="contentinfo" aria-label="Contatti e informazioni">
+
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Left: info -->
+        <div>
+          <img src="logo.svg" alt="Grande Shangai" class="footer-logo" />
+          <p class="footer-tagline">Mangia quanto vuoi. Paga quanto sai.</p>
+
+          <ul class="footer-details" role="list">
+            <li>
+              <span class="detail-emoji" aria-hidden="true">📍</span>
+              <span>Via Gioacchino Rossini, 131, 87036 Quattromiglia CS</span>
+            </li>
+            <li>
+              <span class="detail-emoji" aria-hidden="true">📞</span>
+              <a href="tel:09841900403" aria-label="Chiama il ristorante">0984 190 0403</a>
+            </li>
+            <li>
+              <span class="detail-emoji" aria-hidden="true">🕐</span>
+              <span><strong>Pranzo:</strong> Tutti i giorni 12:30 - 15:00</span>
+            </li>
+            <li>
+              <span class="detail-emoji" aria-hidden="true">🕖</span>
+              <span><strong>Cena:</strong> Tutti i giorni 19:30 - 23:00</span>
+            </li>
+          </ul>
+
+          <!-- Social icons -->
+          <div class="footer-social" role="list">
+            <a
+              href="https://instagram.com/grandeshangai"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram di Grande Shangai"
+              role="listitem"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a
+              href="https://facebook.com/grandeshangai"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook di Grande Shangai"
+              role="listitem"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: map -->
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.7!2d16.2258!3d39.3244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zVmlhIEdpb2FjY2hpbm8gUm9zc2luaSwgMTMxLCA4NzAzNiBSZW5kZSBDUw!5e0!3m2!1sit!2sit!4v1"
+            title="Posizione di Grande Shangai su Google Maps"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p>© 2025 Grande Shangai. Tutti i diritti riservati.</p>
+          <p>P.IVA [PLACEHOLDER]</p>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+  <script>
+    // ── Nav scroll behavior ─────────────────────────────
+    const nav = document.getElementById('main-nav');
+
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run on load
+
+
+    // ── Hamburger / mobile overlay ──────────────────────
+    const hamburger = document.getElementById('hamburger-btn');
+    const overlay   = document.getElementById('mobile-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    const closeOverlay = () => {
+      hamburger.classList.remove('open');
+      overlay.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeOverlay);
+    });
+
+    // Close overlay on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeOverlay();
+    });
+
+
+    // ── Intersection Observer — scroll reveal ───────────
+    const revealSelectors = '.reveal, .reveal-left, .reveal-right';
+    const revealEls = document.querySelectorAll(revealSelectors);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => observer.observe(el));
+
+
+    // ── Staggered delay for features grid ──────────────
+    document.querySelectorAll('.feature-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.1}s`;
+    });
+  </script>
+
+</body>
+</html>
